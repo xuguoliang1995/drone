@@ -1,15 +1,14 @@
 workspace:
   base: /tmp
-  path: .
+  path: /drone/src/github.com/xuguoliang1995/drone
 
 pipeline:
   build:
     image: ubuntu:16.04
     commands:
-       - echo "Hello world"
-       - pwd
-       - go get
-       - go build
+      - go get
+      - go build
+      - go test
     dockerfile: ./Dockerfile
 
   publish:
@@ -18,7 +17,7 @@ pipeline:
     repo: xuguoliang1995/drone # docker仓库地址
     secrets: [ xuguoliang1995, "0123qw456xuguo?" ]
     tags:
-       - latest
+      - latest
 
 #  deploy:
 #      image: appleboy/drone-ssh
