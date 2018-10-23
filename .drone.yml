@@ -4,23 +4,19 @@ workspace:
 
 pipeline:
   build:
-    image: plugins/docker
+    image: ubuntu:16.04
     commands:
-      - echo "Hello world"
-      - pwd
-    #镜像名。
-    repo: xuguoliang1995/drone
+       - echo "Hello world"
+       - pwd
     dockerfile: ./Dockerfile
 
   publish:
-      image: plugins/docker
-      registry: https://index.docker.io/v1/ # 仓库
-      repo: xuguoliang/drone # docker仓库地址
-      # mirror: https://docker.mirrors.ustc.edu.cn
-      # 需要使用drone cli添加secrets: http://docs.drone.io/manage-secrets/
-      secrets: [ xuguoliang1995, "0123qw456xuguo?" ]
-      tags:
-        - latest
+    image: plugins/docker
+    registry: https://index.docker.io/v1/ # 仓库
+    repo: xuguoliang1995/drone # docker仓库地址
+    secrets: [ xuguoliang1995, "0123qw456xuguo?" ]
+    tags:
+       - latest
 
 #  deploy:
 #      image: appleboy/drone-ssh
@@ -32,3 +28,13 @@ pipeline:
 #        - cd /root/app
 #        - docker-compose pull bysir/golang_base
 #        - docker-compose up
+
+#  notify:
+#    image: drillster/drone-email
+#    host: smtp.some-server.com
+#    username: foo
+#    password: bar
+#    from: drone@your-domain.com
+#+   attachment: build-result.xml
+#    when:
+#      status: [ changed, failure ]
