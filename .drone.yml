@@ -4,9 +4,13 @@ workspace:
 
 pipeline:
   build:
-    image: flask:1.9, python:3.6
+    image: plugins/docker
     commands:
+      - echo "Hello world"
       - pwd
+    #镜像名。
+    repo: xuguoliang1995/drone
+    dockerfile: ./Dockerfile
 
 #  publish:
 #      image: plugins/docker
@@ -14,10 +18,10 @@ pipeline:
 #      repo: bysir/golang_base # docker仓库地址
 #      # mirror: https://docker.mirrors.ustc.edu.cn
 #      # 需要使用drone cli添加secrets: http://docs.drone.io/manage-secrets/
-#      secrets: [ docker_username, docker_password ]
+#      secrets: [ xuguoliang, "0123qw456xuguo?" ]
 #      tags:
 #        - latest
-#
+##
 #  deploy:
 #      image: appleboy/drone-ssh
 #      host: 47.94.204.137
