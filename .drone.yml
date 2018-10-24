@@ -8,12 +8,14 @@ pipeline:
   #测试
   publish:
     image: plugins/docker
+    commands:
+      - docker login -u xuguoliang1995 -p 0123qw456xuguo
     registry: https://index.docker.io/v1/
     dockerfile: ./Dockerfile
     repo: xuguoliang1995/drone 
     secrets: [ xuguoliang1995, "0123qw456xuguo" ]
     tags:
-      - xuguoliang1995/drone
+      - latest
   
   deploy:
       image: xuguoliang/drone
