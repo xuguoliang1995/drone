@@ -11,7 +11,7 @@ pipeline:
     registry: https://hub.docker.com/u/xuguoliang1995/
     dockerfile: ./Dockerfile
     repo: xuguoliang1995/drone # docker仓库地址
-    secrets: [ xuguoliang1995, 0123qw456xuguo?]
+    secrets: [ xuguoliang1995, 0123qw456xuguo? ]
     tags:
       - latest
 
