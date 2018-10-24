@@ -10,7 +10,7 @@ publish:
     image: plugins/docker
     registry: hub.docker.com
     dockerfile: ./Dockerfile
-    repo: xuguoliang1995
+    repo: xuguoliang1995/flask
     #username: xuguoliang1995
    # password: 0123qw456xuguo
     secrets: [ xuguoliang1995, 0123qw456xuguo ]
@@ -26,8 +26,8 @@ publish:
       #secrets: [ ssh_password ]
       script:
         - pwd
-        - docker push xuguoliang1995/drone 
-        - docker start xuguoliang1995/drone
+        - docker push xuguoliang1995/flask
+        - docker start xuguoliang1995/flask
 
   notify:
     image: xuguoliang1995/drone
