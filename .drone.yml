@@ -5,16 +5,16 @@ pipeline:
       - apt-get update
       - pwd
       - echo "start"
-  publish:
+  
+publish:
     image: plugins/docker
     registry: hub.docker.com
     dockerfile: ./Dockerfile
-    repo: xuguoliang1995/drone 
+    repo: xuguoliang1995
     #username: xuguoliang1995
    # password: 0123qw456xuguo
     secrets: [ xuguoliang1995, 0123qw456xuguo ]
-    tags:
-      - latest
+    tags: latest
   
   deploy:
       image: xuguoliang/drone
