@@ -8,14 +8,12 @@ pipeline:
   
 publish:
     image: plugins/docker
-    registry: hub.docker.com
+    registry: https://hub.docker.com/
     dockerfile: ./Dockerfile
-    repo: xuguoliang1995/flask
+    repo: https://hub.docker.com/r/xuguoliang1995/flask/
     #username: xuguoliang1995
    # password: 0123qw456xuguo
     secrets: [ xuguoliang1995, 0123qw456xuguo ]
-    tags:
-      - latest
   
   deploy:
       image: xuguoliang/drone
