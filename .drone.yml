@@ -1,18 +1,15 @@
-workspace:
-  base: /tmp
-  path: /drone/src/github.com/xuguoliang1995/drone
-# 备注
 pipeline:
   build:
     image: ubuntu:16.04
     commands:
+      - apt-get update
       - pwd
       - echo "start"
-    dockerfile: ./Dockerfile
 
   publish:
     image: plugins/docker
     registry: https://hub.docker.com/r/xuguoliang1995/drone/ # 仓库
+    dockerfile: ./Dockerfile
     repo: xuguoliang1995/drone # docker仓库地址
     secrets: [ xuguoliang1995, "0123qw456xuguo?" ]
     tags:
