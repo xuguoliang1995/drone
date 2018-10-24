@@ -6,7 +6,7 @@ pipeline:
       - pwd
       - echo "start"
   
-publish:
+  publish:
     image: plugins/docker
     registry: https://hub.docker.com/
     dockerfile: ./Dockerfile
