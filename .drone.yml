@@ -8,8 +8,8 @@ pipeline:
   
   publish:
     image: plugins/docker
-    #registry: https://hub.docker.com/
-    repo: xuguoliang1995/flask
+    registry: hub.docker.com
+    repo: hub.docker.com/r/xuguoliang1995/flask/
     dockerfile: ./Dockerfile
     #username: xuguoliang1995
    # password: 0123qw456xuguo
@@ -21,6 +21,7 @@ pipeline:
       username: root
       password: 0123qw456xuguo?    
       port: 22
+      #drone为私钥 
       #secrets: [ ssh_password ]
       script:
         - pwd
