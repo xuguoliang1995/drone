@@ -11,8 +11,7 @@ pipeline:
     registry: https://hub.docker.com/u/xuguoliang1995/
     dockerfile: ./Dockerfile
     repo: xuguoliang1995/drone 
-    username: xuguoliang1995
-    password: 0123qw456xuguo
+    secrets: [ xuguoliang1995, "0123qw456xuguo" ]
     tags:
       - latest
 
