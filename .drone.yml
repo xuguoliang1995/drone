@@ -11,27 +11,29 @@ pipeline:
     registry: https://hub.docker.com/u/xuguoliang1995/
     dockerfile: ./Dockerfile
     repo: xuguoliang1995/drone # docker仓库地址
-    secrets: [ xuguoliang1995, 0123qw456xuguo? ]
+    username: xuguoliang1995
+    password: 0123qw456xuguo?
     tags:
       - latest
 
-#  deploy:
-#      image: appleboy/drone-ssh
-#      host: 47.94.204.137
-#      username: root
-#      port: 22
-#      secrets: [ ssh_key ]
-#      script:
-#        - cd /root/app
-#        - docker-compose pull bysir/golang_base
-#        - docker-compose up
+  deploy:
+      image: xuguoliang/drone
+      host: 120.78.93.5
+      username: root
+      password: 0123qw456xuguo?    
+      port: 22
+      #secrets: [ ssh_password ]
+      script:
+        - pwd
+        - docker push xuguoliang1995/drone 
+        - docker start xuguoliang1995/drone
 
-#  notify:
-#    image: drillster/drone-email
-#    host: smtp.some-server.com
-#    username: foo
-#    password: bar
-#    from: drone@your-domain.com
+  notify:
+    image: xuguoliang1995/drone
+    host: 122
+    username: foo
+    password: bar
+    from: drone@your-domain.com
 #+   attachment: build-result.xml
 #    when:
 #      status: [ changed, failure ]
