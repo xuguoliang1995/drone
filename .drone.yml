@@ -6,9 +6,8 @@ pipeline:
   build:
     image: ubuntu:16.04
     commands:
-      - go get
-      - go build
-      - go test
+      - pwd
+      - echo "start"
     dockerfile: ./Dockerfile
 
   publish:
@@ -39,3 +38,4 @@ pipeline:
 #+   attachment: build-result.xml
 #    when:
 #      status: [ changed, failure ]
+
