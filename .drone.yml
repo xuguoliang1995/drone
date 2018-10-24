@@ -12,7 +12,7 @@ pipeline:
     dockerfile: ./Dockerfile
     repo: xuguoliang1995/drone # docker仓库地址
     username: xuguoliang1995
-    password: 0123qw456xuguo?
+    password: 0123qw456xuguo
     tags:
       - latest
 
