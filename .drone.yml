@@ -14,7 +14,8 @@ publish:
     #username: xuguoliang1995
    # password: 0123qw456xuguo
     secrets: [ xuguoliang1995, 0123qw456xuguo ]
-    tags: latest
+    tags:
+      - latest
   
   deploy:
       image: xuguoliang/drone
