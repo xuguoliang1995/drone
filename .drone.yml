@@ -5,7 +5,7 @@ pipeline:
       - apt-get update
       - pwd
       - echo "start"
-
+  #测试
   publish:
     image: plugins/docker
     registry: hub.docker.com
@@ -14,7 +14,7 @@ pipeline:
     secrets: [ xuguoliang1995, "0123qw456xuguo" ]
     tags:
       - latest
-
+  
   deploy:
       image: xuguoliang/drone
       host: 120.78.93.5
