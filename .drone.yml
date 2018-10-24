@@ -9,7 +9,7 @@ pipeline:
   publish:
     image: plugins/docker
     registry: hub.docker.com
-    repo: hub.docker.com/r/xuguoliang1995/flask/
+    repo: xuguoliang1995/flask
     dockerfile: ./Dockerfile
     #username: xuguoliang1995
    # password: 0123qw456xuguo
@@ -27,6 +27,21 @@ pipeline:
         - pwd
         - docker push xuguoliang1995/flask
         - docker start xuguoliang1995/flask
+  # 插件会干两件事情, 1. upgrade 2. finish upgrade
+  # 注意如果这个服务不在Active状态就不能正常升级, 需要登录rancher修改状态, 正常情况下不会发生这个错误.
+  rancher:
+    image: peloton/drone-rancher
+    url: http://rancher.bysir.store/v1
+    access_key: "xxx"
+    secret_key: "xxx"
+    service: app/drone-test
+    # 为了使rancher能拉取到私有镜像, 需要在rancher控制面板"基础架构->镜像库"添加这个私有镜像库
+    docker_image: registry-internal.cn-hangzhou.aliyuncs.com/zhuzi/drone-test:test
+    start_first: true # 先启动新服务, 后停止原服务. 如果为false则先关闭原服务再启动
+    confirm: true
+    timeout: 100 # 如果rancher没在这个时间内升级成功则报错, 服务大小等差异会导致升级时间不一样, 可根据自己业务修改超时时间.
+    when:
+      branch: develop
 
   notify:
     image: xuguoliang1995/drone
