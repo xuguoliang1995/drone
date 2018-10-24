@@ -10,9 +10,9 @@ pipeline:
     registry: hub.docker.com
     dockerfile: ./Dockerfile
     repo: xuguoliang1995/drone 
-    username: xuguoliang1995
-    password: 0123qw456xuguo
-# secrets: [ xuguoliang1995, 0123qw456xuguo ]
+    #username: xuguoliang1995
+   # password: 0123qw456xuguo
+    secrets: [ xuguoliang1995, 0123qw456xuguo ]
     tags:
       - latest
   
