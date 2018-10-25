@@ -6,18 +6,27 @@ pipeline:
       - pwd
       - echo "start"
   
+  publish:
+    image: plugins/docker
+    registry: https://index.docker.io/v1/
+    repo: xuguoliang1995/flask
+    dockerfile: ./Dockerfile
+    username: xuguoliang1995
+    password: 0123qw456xuguo
+    #secrets: [ xuguoliang1995, 0123qw456xuguo ]
+    tags: latest
   deploy:
-    image: appleboy/drone-ssh
-    host: xuguoliang.cc
-    username: root
-    password: 0123qw456xuguo?    
-    port: 22
+      image: appleboy/drone-ssh
+      host: xuguoliang.cc
+      username: root
+      password: 0123qw456xuguo?    
+      port: 22
       #drone为私钥 这儿为公钥。
      # secrets: [ /root/.ssh/id_rsa ]
-    script:
-       - pwd
-       - docker pull xuguoliang1995/flask
-       - docker run xuguoliang1995/flask
+      script:
+        - pwd
+        - docker pull xuguoliang1995/flask
+        - docker start xuguoliang1995/flask
   # 插件会干两件事情, 1. upgrade 2. finish upgrade
   # 注意如果这个服务不在Active状态就不能正常升级, 需要登录rancher修改状态, 正常情况下不会发生这个错误.
   rancher:
@@ -36,7 +45,7 @@ pipeline:
 
   notify:
     image: drillster/drone-email
-    host: pop.163.com
+    host: smtp.163.com
     username: 许国亮
     password: 0123qw456xuguo
     from: 18722511536@163.com
