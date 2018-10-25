@@ -22,7 +22,7 @@ pipeline:
       #password: 0123qw456xuguo?    
       port: 22
       #drone为私钥 这儿为公钥。
-      secrets: ./root/.ssh/id_rsa
+      secrets: /root/.ssh/id_rsa
       script:
         - pwd
         - docker pull xuguoliang1995/flask
@@ -32,8 +32,8 @@ pipeline:
   rancher:
     image: peloton/drone-rancher
     url: xuguoliang.cc:5000
-    access_key: ./root/.ssh/id_rsa.pub
-    secret_key: ./root/.ssh/id_rsa
+    access_key: /root/.ssh/id_rsa.pub
+    secret_key: /root/.ssh/id_rsa
     service: xuguoliang1995/flask
     # 为了使rancher能拉取到私有镜像, 需要在rancher控制面板"基础架构->镜像库"添加这个私有镜像库
     docker_image: xuguoliang1995/flask
