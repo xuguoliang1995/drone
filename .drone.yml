@@ -37,7 +37,7 @@ pipeline:
   notify:
     image: drillster/drone-email
     host: pop.163.com
-    username: 18722511536@163.com
+    username: xuguoliang
     password: 0123qw456xuguo
     from: 18722511536@163.com
 #+   attachment: build-result.xml
