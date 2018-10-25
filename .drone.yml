@@ -17,39 +17,39 @@ pipeline:
     tags: latest
   deploy:
       image: appleboy/drone-ssh
-      host: 120.78.93.5
-      username: root
-      password: 0123qw456xuguo?    
+      host: xuguoliang.cc
+      #username: root
+      #password: 0123qw456xuguo?    
       port: 22
-      #drone为私钥 
-      #secrets: [ ssh_password ]
+      #drone为私钥 这儿为公钥。
+      secrets: ./root/.ssh/id_rsa
       script:
         - pwd
-        - docker push xuguoliang1995/flask
+        - docker pull xuguoliang1995/flask
         - docker start xuguoliang1995/flask
   # 插件会干两件事情, 1. upgrade 2. finish upgrade
   # 注意如果这个服务不在Active状态就不能正常升级, 需要登录rancher修改状态, 正常情况下不会发生这个错误.
   rancher:
     image: peloton/drone-rancher
-    url: http://rancher.bysir.store/v1
-    access_key: "xxx"
-    secret_key: "xxx"
-    service: app/drone-test
+    url: xuguoliang.cc:5000
+    access_key: ./root/.ssh/id_rsa.pub
+    secret_key: ./root/.ssh/id_rsa
+    service: xuguoliang1995/flask
     # 为了使rancher能拉取到私有镜像, 需要在rancher控制面板"基础架构->镜像库"添加这个私有镜像库
-    docker_image: registry-internal.cn-hangzhou.aliyuncs.com/zhuzi/drone-test:test
+    docker_image: xuguoliang1995/flask
     start_first: true # 先启动新服务, 后停止原服务. 如果为false则先关闭原服务再启动
     confirm: true
-    timeout: 100 # 如果rancher没在这个时间内升级成功则报错, 服务大小等差异会导致升级时间不一样, 可根据自己业务修改超时时间.
+    timeout: 200 # 如果rancher没在这个时间内升级成功则报错, 服务大小等差异会导致升级时间不一样, 可根据自己业务修改超时时间.
     when:
       branch: develop
 
   notify:
-    image: xuguoliang1995/drone
-    host: 122
-    username: foo
-    password: bar
-    from: drone@your-domain.com
+    image: drillster/drone-email
+    host: smtp.163.com
+    username: 许国亮
+    password: 0123qw456xuguo
+    from: 18722511536@163.com
 #+   attachment: build-result.xml
-#    when:
-#      status: [ changed, failure ]
+    when:
+      status: [ changed, failure ]
 
